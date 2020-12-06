@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<script>
+		function save() {
+			var eid = document.getElementById('txteid').value;
+			var ename = document.getElementById('txtename').value;
+			var salary = document.getElementById('txtsal').value;
+			var dept = document.getElementById('txtdept').value;
+
+			if (localStorage.getItem(eid) == null) {
+				var empjson = {
+					eid,
+					ename,
+					salary,
+					dept
+				};
+				localStorage.setItem(eid, JSON.stringify(empjson));
+				alert("Employee added in storage!");
+			} else {
+				alert("🎇Employee already exists🎇")
+			}
+		}
+
+		function remove(e, key) {
+			console.log('Item to be removed: ', e.parentNode.parentNode.firstChild.innerHTML);
+			var parent = e.parentNode.parentNode;
+			console.log(typeof key)
+			parent.remove();
+			localStorage.removeItem(key);
+		}
+
+		function displayAll() {
+			var html = `<table cellpadding='10' bgcolor='wheat' style='margin: 0px auto'>`;
+			for (var idx = 0; idx < localStorage.length; idx++) {
+				let key = localStorage.key(idx);
+				var empjson = localStorage.getItem(key);
+				empjson = JSON.parse(empjson)
+				html += `<tr><td>${empjson.eid}</td>`;
+				html += `<td>${empjson.ename}</td>`;
+				html += `<td>${empjson.salary}</td>`;
+				html += `<td>${empjson.dept}</td>`;
+				html += `<td><button onclick='remove(this, ${key})'>remove</button></td></tr>`
+
+			}
+			html += `</table>`;
+			document.getElementById('div1').innerHTML = html;
+		}
+
+		function display() {
+			document.getElementById('div1').innerHTML = '';
+			var eid = document.getElementById('txteid').value;
+			var empjson = localStorage.getItem(eid);
+			if (empjson != null) {
+				empjson = JSON.parse(empjson)
+				var html = `<table cellpadding='10' bgcolor='wheat' style='margin: 0px auto'>`;
+				html += `<tr><td>EID</td><td>${empjson.eid}</td></tr>`;
+				html += `<tr><td>Ename</td><td>${empjson.ename}</td></tr>`;
+				html += `<tr><td>Sal</td><td>${empjson.salary}</td></tr>`;
+				html += `<tr><td>Dept</td><td>${empjson.dept}</td></tr>`;
+				html += `</table>`;
+				document.getElementById('div1').innerHTML = html;
+			} else {
+				document.getElementById('div1').innerHTML = '🎇No Employee found🎇'
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<h1 align="center">Storage Demo</h1>
+	<hr />
+	<table cellpadding="10" bgcolor="#wheat" style="margin: 0 auto;">
+		<tr>
+			<td>EmpID</td>
+			<td><input type="text" id="txteid" /></td>
+		</tr>
+		<tr>
+			<td>name</td>
+			<td><input type="text" id="txtename" /></td>
+		</tr>
+		<tr>
+			<td>salary</td>
+			<td><input type="text" id="txtsal" /></td>
+		</tr>
+		<tr>
+			<td>dept</td>
+			<td><select id="txtdept">
+					<option value="hr">hr</option>
+					<option value="pr">pr</option>
+					<option value="qa">qa</option>
+				</select></td>
+		</tr>
+		<tr>
+			<td><input type="button" value="add" onclick="save()" />
+			<td><input type="button" value="display all" onclick="displayAll()" />
+				<input type="button" value="display" onclick="display()" />
+			</td>
+		</tr>
+
+	</table>
+	<hr size="2" style="background-color: red" />
+	<div id="div1">
+
+	</div>
+
+	<table>
+
+	</table>
+</body>
+
+</html>

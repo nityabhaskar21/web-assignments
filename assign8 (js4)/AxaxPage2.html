@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX Demo</title>
+    <style>
+        .data {
+            width: 200px;
+        }
+    </style>
+    <script>
+        function getAlbum() {
+            var albumid = document.getElementById("txtid").value;
+            if (albumid.length == 0 || isNaN(albumid)) {
+                alert("p1ease enter a numser");
+                return;
+            }
+            var ajax = new XMLHttpRequest();
+            var url = "https://jsonplaceholder.typicode.com/photos/" + albumid;
+            ajax.open("GET", url, true);
+            ajax.send();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var resp = ajax.responseText;
+                    console.log(resp);
+                    var pjson = JSON.parse(resp);
+                    document.getElementById("atitle").innerHTML = pjson.title;
+
+                    document.getElementById("aimage").innerHTML =
+
+                        "<img src='" + pjson.thumbnailUrl + "' heignt='200' width='200'/>";
+                }
+                if (ajax.readyState == 4 && ajax.status === 404) {
+                    document.getElementById("atitle").innerHTML = "";
+                    document.getElementById("aimage").innerHTML = "";
+                    alert("No Album Founc!.")
+                }
+            }
+        }
+    </script>
+</head>
+
+<body>
+    <h1 align="center">Album Detals Using AJAX</h1>
+    <hr />
+    <article align="center">
+        Enter Album ID <input type="text" id="txtid" />
+        <input type="button" value="search" onclick="getAlbum()" />
+    </article>
+    <hr />
+
+    <table cellpadding="10" bgcolor="wheat" style="margin:0px auto;">
+        <tr>
+            <td>Image</td>
+            <td id="aimage" class="data" style="height:200px"></td>
+        </tr>
+        <tr>
+            <td>Album Title</td>
+            <td id="atitle" class="data"></td>
+        </tr>
+
+    </table>
+</body>
+
+</html>

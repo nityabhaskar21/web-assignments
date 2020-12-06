@@ -1,0 +1,66 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Insert title here</title>
+
+  <script>
+    var aparr = ["vijayawada", "vizag", "tirupati"];
+    var uparr = ["lucknow", "noida", "mathura"];
+    var hrarr = ["gurgaon", "panipet", "ambala"];
+  </script>
+</head>
+
+<body>
+  <h1>States and its cities</h1>
+  <hr />
+  <table cellpadding="10" bgcolor="wheat" style="margin:0px auto">
+    <tr>
+      <td>State</td>
+      <td>
+        <select id="state" onchange="showCities(this.value)">
+          <option value="">--select state</option>
+          <option value="ap">AP</option>
+          <option value="up">UP</option>
+          <option value="haryana">Haryana</option>
+        </select>
+      </td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td id="res"></td>
+    </tr>
+  </table>
+</body>
+
+</html>
+<script>
+  function showCities(state) {
+    var res = '';
+    switch (state) {
+      case 'ap':
+        res = populate(aparr);
+        break;
+      case 'up':
+        res = populate(uparr);
+        break;
+      case 'haryana':
+        res = populate(hrarr);
+        break;
+      default:
+        res = 'select the state';
+    }
+    document.getElementById('res').innerHTML = res;
+  }
+
+  function populate(arr) {
+    arr.sort();
+    var html = '<select id="city"> <option>---select city---</option>';
+    for (var idx = 0; idx < arr.length; idx++) {
+      html += `<option value='${arr[idx]}'> ${arr[idx]} </option> `;
+    }
+    html += `</select>`;
+    return html;
+  }
+</script>

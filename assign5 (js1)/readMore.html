@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    div {
+      width: 400px;
+      border: 2px solid crimson;
+    }
+
+    #div2 {
+      display: none;
+    }
+  </style>
+</head>
+
+<body>
+  <h2>Read more/less</h2>
+  <hr>
+  <div id="div1">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error ipsum voluptatem, repellendus
+    reiciendis, officia inventore corrupti ullam accusantium animi beatae nesciunt cupiditate deserunt excepturi. Ea a
+    quibusdam dolore illo sapiente!</div>
+  <a href="#" id="link1" onclick=" display(this)">read more</a>
+  <div id="div2">Lorem ipsum dolor sit amet consectetur adipisicing elit. Error ipsum voluptatem, repellendus
+    reiciendis, officia inventore corrupti ullam accusantium animi beatae nesciunt cupiditate deserunt excepturi. Ea a
+    quibusdam dolore illo sapiente!</div>
+</body>
+
+</html>
+
+<script>
+  document.getElementById(div2).display = 'none'
+
+  function display(elem) {
+    if (document.getElementById("link1").innerHTML === "read more") {
+      document.getElementById("div2").style.display = 'block';
+      document.getElementById("link1").innerHTML = 'read less'
+    } else {
+      document.getElementById("div2").style.display = 'none';
+      document.getElementById("link1").innerHTML = 'read more'
+    }
+  }
+</script>

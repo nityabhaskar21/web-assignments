@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    h1 {
+      text-align: center;
+      text-transform: uppercase;
+      color: crimson;
+    }
+
+    caption {
+      font-weight: bold;
+      font-size: 28px;
+      color: crimson;
+    }
+
+    table {
+      margin: 0px auto;
+      border-collapse: collapse;
+
+    }
+
+    th,
+    td {
+      padding: 10px;
+    }
+
+    thead tr:first-child {
+      background-color: crimson;
+      color: whitesmoke;
+    }
+
+    tbody tr:nth-child(odd) {
+      background-color: orange;
+
+    }
+
+    tbody tr:nth-child(even) {
+      background-color: wheat;
+
+    }
+
+    tbody tr:last-child {
+      background-color: green;
+      color: aliceblue;
+    }
+
+    @media only screen and (max-width: 800px) {
+      thead {
+        display: none;
+      }
+
+      td {
+        display: block
+      }
+    }
+  </style>
+</head>
+
+<body>
+  <h1>table Css demo</h1>
+  <hr>
+  <table border="1">
+    <caption>Product Price List</caption>
+    <thead>
+      <tr>
+        <th>Product ID</th>
+        <th>Product Name</th>
+        <th>Description</th>
+        <th>Price</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr title="iphone">
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+      </tr>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+      </tr>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+      </tr>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+      </tr>
+      <tr>
+        <td>a</td>
+        <td>b</td>
+        <td>c</td>
+        <td>d</td>
+      </tr>
+      <tr>
+        <td colspan="3">Total Products price</td>
+        <td>d</td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+
+</html>

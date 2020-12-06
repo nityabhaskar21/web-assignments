@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+  <meta charset="ISO-8859-1">
+  <title>Insert title here</title>
+  <style>
+    img {
+      height: 200px;
+      width: 200px;
+    }
+  </style>
+  <script>
+    var arr = ["../images/mobile1.jpg", "../images/mobile2.jpg", "../images/mobile3.jpg",
+      "../images/mobile4.jpg", "../images/mobile5.jpg", "../images/mobile6.jpg"
+    ];
+    var idx = 0;
+    var timer;
+
+    function startShow() {
+      timer = setInterval("display()", 2000);
+    }
+
+    function display() {
+      if (idx == arr.length) {
+        idx = 0;
+      }
+      var html = `<img src ='${arr[idx]}' >`;
+      document.getElementById('div1').innerHTML = html;
+      ++idx
+    }
+
+    function stopShow() {
+      clearInterval(timer)
+    }
+  </script>
+</head>
+
+<body>
+  <h1>Slide show</h1>
+  <hr />
+  <div id="div1" style="width:200px; height:200px; border: 1px solid red;">
+  </div>
+  <input type="button" value="start" onclick="startShow()" />
+  <input type="button" value="stop" onclick="stopShow()" />
+</body>
+
+</html>
+<script>
+
+</script>

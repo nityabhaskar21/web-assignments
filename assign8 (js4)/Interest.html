@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <script>
+    function Account(a, y, r) {
+      this.amount = a;
+      this.years = y;
+      this.rate = r;
+
+      this.calSI = function () {
+        return this.amount * this.years * this.rate / 100;
+      }
+
+      this.calCI = function () {
+        var ci = this.amount * Math.pow((1 + this.rate / 100), this.years) - this.amount;
+        return ci;
+      }
+
+    }
+
+    function CI() {
+      var amount = document.getElementById('amount').value;
+      var years = document.getElementById('years').value;
+      var rate = document.getElementById('rate').value;
+
+      var obj = new Account(amount, years, rate);
+
+      var res = obj.calCI();
+      document.getElementById('result').innerHTML = res;
+    }
+
+    function SI() {
+
+      var amount = document.getElementById('amount').value;
+      var years = document.getElementById('years').value;
+      var rate = document.getElementById('rate').value;
+
+      var obj = new Account(amount, years, rate);
+      console.log(amount);
+
+      var res = obj.calSI();
+      document.getElementById('result').innerHTML = res;
+    }
+  </script>
+</head>
+
+
+<body>
+  <div class="div1">
+
+    <label for="text">Amount:</label>
+    <input type="text" name="amount" id="amount">
+    <br>
+    <label for="years">Years:</label>
+    <input type="text" name="years" id="years">
+    <br>
+    <label for="rate">Rate%:</label>
+    <input type="rate" name="rate" id="rate">
+    <br>
+    <button id="SI" onclick="SI()">SI</button>
+    <br>
+    <button id="CI" onclick="CI()">CI</button>
+  </div>
+  <div id="div2">result: <span id='result'></span></div>
+</body>
+
+</html>

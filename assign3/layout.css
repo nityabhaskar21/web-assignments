@@ -1,0 +1,31 @@
+body {
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif
+}
+
+header,
+footer {
+  background: -webkit-linear-gradient(left, moccasin, wheat, aliceblue, wheat, moccasin);
+  text-align: center;
+  padding: 10px;
+}
+
+#mtitle {
+  color: gray;
+  font-size: 48px;
+  font-family: 'Lucida Sans', 'Lucida Sans Regular', 'Lucida Grande', 'Lucida Sans Unicode', Geneva, Verdana, sans-serif;
+  text-shadow: 5px 5px 5px crimson;
+}
+
+article {
+  min-height: 500px;
+}
+
+aside {
+  border: 1px solid crimson;
+  background-color: orange;
+}
+
+aside img {
+  height: 200px;
+  border-radius: 100px;
+}

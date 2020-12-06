@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>Document</title>
+  <style>
+    article section {
+      margin: 10px;
+      border: 1px solid crimson;
+    }
+
+    article section img {
+      height: 200px;
+      width: 250px;
+      transition: -webkit-transform 2s;
+    }
+
+    #i1:hover {
+      transform: rotate(180deg)
+    }
+
+    #i2:hover {
+      transform: rotateX(180deg)
+    }
+  </style>
+</head>
+
+<body>
+  <article>
+    <section><img id="i1" src='https://dummyimage.com/100x100.jpg' alt='' /></section>
+    <section><img id="i2" src='https://dummyimage.com/100x100.jpg' alt='' /></section>
+    <section><img id="i3" src='https://dummyimage.com/100x100.jpg' alt='' /></section>
+    <section><img id="i4" src='https://dummyimage.com/100x100.jpg' alt='' /></section>
+    <section><img id="i5" src='https://dummyimage.com/100x100.jpg' alt='' /></section>
+  </article>
+</body>
+
+</html>

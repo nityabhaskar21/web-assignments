@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+	<meta charset="ISO-8859-1">
+	<title>Insert title here</title>
+	<script type="text/javascript">
+		var obj = {
+			num: 0,
+			toBinary: function () {
+				return new Number(this.num).toString(2)
+			},
+			toOctal: function () {
+				return new Number(this.num).toString(8)
+			},
+			toHexa: function () {
+				return new Number(this.num).toString(16)
+			}
+		}
+
+		function doProcess(ntype) {
+
+			console.log(obj);
+			console.log(typeof (obj))
+			var n = document.getElementById("txtnum").value;
+			obj.num = n;
+			switch (ntype) {
+				case "binary":
+					document.getElementById("result").innerHTML = obj.toBinary();
+					break;
+				case "octal":
+					document.getElementById("result").innerHTML = obj.toOctal();
+					break;
+				case "hexa":
+					document.getElementById("result").innerHTML = obj.toHexa();
+					break;
+				default:
+					document.getElementById("result").innerHTML = "";
+					alert("select an option");
+			}
+		}
+	</script>
+</head>
+
+<body>
+	<h1 align="center">Number Conversion</h1>
+	<hr />
+	<table cellpadding="10" bgcolor="#e3e3e3" style="margin:0px auto;">
+		<tr>
+			<td>Decimal Number</td>
+			<td><input type="text" id="txtnum" /></td>
+		</tr>
+		<tr>
+			<td>Choose Conversion</td>
+			<td><select onchange="doProcess(this.value)">
+					<option value="">--select numtype---</option>
+					<option value="binary">binary</option>
+					<option value="octal">octal</option>
+					<option value="hexa">hexa</option>
+				</select></td>
+		</tr>
+		<tr>
+			<td>Result</td>
+			<td id="result"></td>
+		</tr>
+	</table>
+
+</body>
+
+</html>

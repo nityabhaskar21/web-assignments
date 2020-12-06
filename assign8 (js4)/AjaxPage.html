@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>AJAX Demo</title>
+  <style>
+    .data {
+      width: 200px;
+    }
+  </style>
+  <script>
+    function getUser() {
+      var userid = document.getElementById("txtid").value;
+      if (userid.length == 0 || isNaN(userid)) {
+        alert("Please enter a number");
+        return;
+      }
+      var ajax = new XMLHttpRequest();
+      var url = "https://jsonplaceholder.typicode.com/users?id=" + userid
+      ajax.open("GET", url, true)
+      ajax.send();
+      ajax.onreadystatechange = function () {
+        if (ajax.readyState == 4 && ajax.status == 200) {
+          var resp = ajax.responseText;
+          var userjson = JSON.parse(resp);
+          if (userjson.length > 0) {
+            document.getElementById("tname").innerHTML = userjson[0].name;
+            document.getElementById("temail").innerHTML = userjson[0].email;
+            document.getElementById("tcity").innerHTML = userjson[0].address.city;
+            document.getElementById("tcontact").innerHTML = userjson[0].phone;
+            document.getElementById("tcompany").innerHTML = userjson[0].company.name;
+          } else {
+            document.getElementById("tname").innerHTML = "";
+            document.getElementById("temail").innerHTML = "";
+            document.getElementById("tcity").innerHTML = "";
+            document.getElementById("tcontact").innerHTML = '';
+            document.getElementById("tcompany").innerHTML = "";
+            alert("no row found");
+          }
+        }
+      }
+    }
+  </script>
+</head>
+
+<body>
+  <h1 align="center">User Detals Using AJAX</h1>
+  <hr />
+  <article align="center">
+    Enter User ID <input type="text" id="txtid" />
+    <input type="button" value="search" onclick="getUser()" />
+  </article>
+  <hr />
+
+  <table cellpadding="10" bgcolor="wheat" style="margin:0px auto;">
+    <tr>
+      <td>Name</td>
+      <td id="tname" class="data"></td>
+    </tr>
+    <tr>
+      <td>Email</td>
+      <td id="temail" class="data"></td>
+    </tr>
+    <tr>
+      <td>City</td>
+      <td id="tcity" class="data"></td>
+    </tr>
+    <tr>
+      <td>Contact</td>
+      <td id="tcontact" class="data"></td>
+    </tr>
+    <tr>
+      <td>Company</td>
+      <td id="tcompany" class="data"></td>
+    </tr>
+  </table>
+</body>
+
+</html>

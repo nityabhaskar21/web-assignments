@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>AJAX Demo</title>
+    <style>
+        .data {
+            width: 200px;
+        }
+
+        table {
+            border-collapse: collapse;
+        }
+
+        tr:nth-child(even) {
+            background-color: aliceblue;
+            color: black;
+        }
+    </style>
+    <script>
+        var html = '';
+
+        function getPosts() {
+
+            var postId = document.getElementById('txtid').value;
+            if (postId.length == 0 || isNaN(postId)) {
+                alert("p1ease enter a number");
+                return;
+            }
+            var ajax = new XMLHttpRequest();
+            var url = "https://jsonplaceholder.typicode.com/posts/" + postId;
+            ajax.open("GET", url, true);
+            ajax.send();
+            ajax.onreadystatechange = function () {
+                if (ajax.readyState == 4 && ajax.status == 200) {
+                    var resp = ajax.responseText;
+                    console.log(resp);
+                    var pjson = JSON.parse(resp);
+                    appendRow(pjson);
+
+                }
+                if (ajax.readyState == 4 && ajax.status === 404) {
+                    document.getElementById("div1").innerHTML += "";
+                    alert("No Posts Found!.")
+                }
+            }
+        }
+
+        function appendRow(pjson) {
+            var id = pjson.id;
+            var title = pjson.title;
+            var body = pjson.body;
+            var tr = document.createElement('tr');
+            var html = `<td> ${id} </td><td>${title}</td> <td>${body}</td>`;
+            tr.innerHTML = html;
+            document.getElementById('tbl1').append(tr);
+        }
+    </script>
+</head>
+
+<body>
+    <h1 align="center">POSTS Detals Using AJAX</h1>
+    <hr />
+    <article align="center">
+        User ID <input type="text" id="txtid" />
+        <input type="button" value="search" onclick="getPosts()" />
+    </article>
+    <hr />
+
+    <div id="div1">
+        <table cellpadding="10" bgcolor="#708090" style="margin: 0px auto; color: white; border-collapse:collapse">
+            <thead>
+                <tr bgcolor="red">
+                    <td>ID</td>
+                    <td>Title</td>
+                    <td>Body</td>
+                </tr>
+            </thead>
+            <tbody id="tbl1">
+
+            </tbody>
+        </table>
+    </div>
+
+</body>
+
+</html>
